@@ -38,7 +38,7 @@ resource "aws_vpc" "main" {
 
 # Add provisioning of the public subnetin the default VPC
 resource "aws_subnet" "public_subnet" {
-  count             = length(var.private_subnet_cidrs)
+  count             = length(var.private_cidr_blocks)
   vpc_id            = aws_vpc.main.id
   cidr_block        = var.private_cidr_blocks[count.index]
   availability_zone = data.aws_availability_zones.available.names[count.index]
@@ -77,4 +77,4 @@ resource "aws_route_table_association" "public_routes" {
   count          = length(aws_subnet.public_subnet[*].id)
   route_table_id = aws_route_table.public_subnets.id
   subnet_id      = aws_subnet.public_subnet[count.index].id
-}
+

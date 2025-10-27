@@ -16,7 +16,8 @@ variable "prefix" {
 }
 
 # Provision public subnets in custom VPC
-variable "private_subnet_cidrs" {
+variable "private_cidr_blocks" {
+
   default     = ["10.20.0.0/24", "10.20.1.0/24"]
   type        = list(string)
   description = "Public Subnet CIDRs"
@@ -34,7 +35,6 @@ variable "env" {
   default     = "test"
   type        = string
   description = "Deployment Environment"
-
 }
 
 
@@ -61,3 +61,7 @@ variable "env" {
       type        = list(string)
       description = "CIDR blocks for the public subnets."
     }
+=======
+}
+
+>>>>>>> 605274cff6914b260a6b6e5d58921950c5cae74b
